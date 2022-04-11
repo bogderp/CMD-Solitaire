@@ -6,4 +6,6 @@ require_relative "game"
 # Talon
 #
 
-Game.new.deal
+game = Game.new
+game.deal
+game.render

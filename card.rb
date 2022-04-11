@@ -9,5 +9,7 @@ class Card
     @value = value[1]
   end
 
-  private
+  def display
+    [suit[:symbol], rank_key].join('')
+  end
 end
