@@ -16,9 +16,39 @@ class Game
     @stock = Stock.new(@deck)
   end
 
+  def update(input)
+    case input
+    when 'd', 'D'
+      @stock.draw
+    when 'n', 'N'
+      @deck = Deck.new
+      @deck.shuffle
+      deal
+    when 'q', 'Q'
+      puts "Thanks for playing!"
+      exit(0)
+    end
+  end
+
   def render
     render_foundation_and_stock
     render_tableau
+    render_move_selection
+  end
+
+  def standard_input
+    %w[D Q N d q n]
+  end
+
+  def render_move_selection
+    puts "\nValid Moves"
+    puts "1: ----"
+    puts "2: ----"
+    puts "3: ----"
+    puts "D: Draw"
+    puts "N: New Game"
+    puts "Q: Quit"
+    puts "Select a move: "
   end
 
   private
