@@ -1,7 +1,7 @@
 class Game
   class Tableau
     def initialize(deck)
-      temp = Array.new(7) { [] }
+      temp = Array.new(7) { Pile.new }
       
       deal_index = 0
       7.times do |i|

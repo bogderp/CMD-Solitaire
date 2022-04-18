@@ -1,9 +1,16 @@
 require_relative "deck"
+require_relative "game/pile"
 require_relative "game/foundation"
 require_relative "game/tableau"
 require_relative "game/stock"
 
 class Game
+  # Tableau
+  # Foundation
+  # Stock
+  # Talon
+  #
+
   def initialize
     @foundation = Foundation.new
 

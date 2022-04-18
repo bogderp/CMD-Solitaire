@@ -1,8 +1,8 @@
 class Game
   class Stock
     def initialize(deck)
-      @stock = deck.deal_remainder
-      @talon = []
+      @stock = Pile.new(deck.deal_remainder)
+      @talon = Pile.new
     end
 
     def draw

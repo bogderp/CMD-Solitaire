@@ -1,7 +1,7 @@
 class Game
   class Foundation
     def initialize
-      @piles = Array.new(4) { [] }
+      @piles = Array.new(4) { Pile.new([], true) }
     end
 
     def display
