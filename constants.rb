@@ -16,9 +16,9 @@ module Constants
   }
 
   SUITS = {
-    Spade: { symbol: '♠', name: 'Spade' },
-    Club: { symbol: '♣', name: 'Club' },
-    Heart: { symbol: '♥', name: 'Heart' },
-    Diamond: { symbol: '♦', name: 'Diamond' }
+    Spade: { symbol: '♠', name: 'Spade', color: 'Black' },
+    Club: { symbol: '♣', name: 'Club', color: 'Black' },
+    Heart: { symbol: '♥', name: 'Heart', color: 'Red' },
+    Diamond: { symbol: '♦', name: 'Diamond', color: 'Red' }
   }
 end

@@ -1,6 +1,7 @@
 class Card
   attr_reader :suit
   attr_reader :rank_key
+  attr_reader :value
 
   def initialize(suit, rank, value)
     @suit = suit
@@ -11,5 +12,9 @@ class Card
 
   def display
     [suit[:symbol], rank_key].join('')
+  end
+
+  def color
+    suit[:color]
   end
 end
