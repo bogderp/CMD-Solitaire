@@ -14,6 +14,10 @@ class Game
       "| #{display_talon} |         | #{display_stock} |"
     end
 
+    def current_card
+      @talon.last
+    end
+
     private
 
     def display_talon

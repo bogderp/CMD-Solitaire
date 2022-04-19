@@ -28,6 +28,10 @@ class Game
       end
     end
 
+    def top_cards
+      @piles.map(&:last)
+    end
+
     private
 
     def display_height

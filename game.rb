@@ -3,6 +3,7 @@ require_relative "game/pile"
 require_relative "game/foundation"
 require_relative "game/tableau"
 require_relative "game/stock"
+require 'pry'
 
 class Game
   # Tableau
@@ -12,6 +13,7 @@ class Game
   #
 
   def initialize
+    @valid_moves = []
     @foundation = Foundation.new
 
     @deck = Deck.new
@@ -48,14 +50,14 @@ class Game
   end
 
   def render_move_selection
-    puts "\nValid Moves"
-    puts "1: ----"
-    puts "2: ----"
-    puts "3: ----"
-    puts "D: Draw"
-    puts "N: New Game"
-    puts "Q: Quit"
-    puts "Select a move: "
+    puts <<~HEREDOC
+      \nValid Moves
+      #{generate_valid_moves.join("\n")}
+      D: Draw
+      N: New Game
+      Q: Quit
+      Select a move:
+    HEREDOC
   end
 
   private
@@ -72,5 +74,18 @@ class Game
     puts "---------------------"
     @tableau.display
     puts "---------------------"
+  end
+
+  def generate_valid_moves
+    moves = [
+      @foundation.moves(@stock.current_card, @tableau.top_cards),
+      #@tableau.moves(@foundation.top_cards)
+    ].flatten
+
+    @valid_moves.clear
+    moves.map.with_index do |move, index|
+      @valid_moves[index] = move
+      "#{index}: #{move[:from_location]} #{move[:from]} to #{move[:to_location]} #{move[:to]}"
+    end
   end
 end
