@@ -18,5 +18,9 @@ class Game
         self.last.value + 1 == card.value && self.last.color != card.color
       end
     end
+
+    def cards_facing_up
+      self.map.with_index { |card, index| { card: card, index: index } if card.is_facing_up? }.compact
+    end
   end
 end
