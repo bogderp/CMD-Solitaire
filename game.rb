@@ -81,6 +81,10 @@ class Game
       @tableau.moves(@foundation.top_cards)
     ].flatten
 
+    moves.sort! do |a, b|
+      [a[:from_location], a[:to_location], a[:to]] <=> [b[:from_location], b[:to_location], b[:to]]
+    end
+
     @valid_moves.clear
     moves.map.with_index do |move, index|
       @valid_moves[index] = move
