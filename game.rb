@@ -10,7 +10,6 @@ class Game
   # Foundation
   # Stock
   # Talon
-  #
 
   def initialize
     @valid_moves = []

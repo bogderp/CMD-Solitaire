@@ -6,7 +6,9 @@ class Game
       deal_index = 0
       7.times do |i|
         (deal_index..6).each do |pile_index|
-          temp[pile_index] << deck.pop
+          card = deck.pop
+          card.toggle_visibility if pile_index != deal_index
+          temp[pile_index] << card
         end
         deal_index += 1
       end
@@ -15,14 +17,9 @@ class Game
     end
 
     def display
-      height = display_height
-      (1..height).reverse_each do |h|
-        row = @piles.each_with_object([]) do |pile, arr|
-          if h == 1
-            arr << pile.last.display
-          else
-            arr << (pile.count >= h ? "--" : "  ")
-          end
+      (1..display_height).each do |row|
+        row = @piles.map do |pile|
+          pile.count >= row ? pile[row - 1].display : "  "
         end
         puts row.join(' ')
       end
