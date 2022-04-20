@@ -15,24 +15,36 @@ class Game
       @piles.each_with_object([]).with_index do |(pile, moves), index|
         if pile.can_receive?(talon_card)
           moves << {
-            from: talon_card.display,
-            from_index: nil,
-            from_location: 'Talon',
-            to: pile.empty? ? "Pile #{index + 1}" : pile.last.display,
-            to_index: index,
-            to_location: 'Foundation'
+            from: {
+              card: talon_card.display,
+              index: nil,
+              pile_index: nil,
+              location: 'Talon',
+            },
+            to: {
+              card: pile.empty? ? "Pile #{index + 1}" : pile.last.display,
+              index: index,
+              pile_index: nil,
+              location: 'Foundation'
+            }
           }
         end
 
         tableau_cards.each_with_index do |tableau_card, tableau_index|
           if pile.can_receive?(tableau_card)
             moves << {
-              from: tableau_card.display,
-              from_index: tableau_index,
-              from_location: 'Tableau',
-              to: pile.empty? ? "Pile #{index + 1}" : pile.last.display,
-              to_index: index,
-              to_location: 'Foundation'
+              from: {
+                card: tableau_card.display,
+                index: tableau_index,
+                pile_index: tableau_index,
+                location: 'Tableau',
+              },
+              to: {
+                card: pile.empty? ? "Pile #{index + 1}" : pile.last.display,
+                index: index,
+                pile_index: nil,
+                location: 'Foundation'
+              }
             }
           end
         end

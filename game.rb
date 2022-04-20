@@ -12,7 +12,7 @@ class Game
   # Talon
 
   def initialize
-    @valid_moves = []
+    @valid_moves = {}
     @foundation = Foundation.new
 
     @deck = Deck.new
@@ -82,13 +82,13 @@ class Game
     ].flatten
 
     moves.sort! do |a, b|
-      [a[:from_location], a[:to_location], a[:to]] <=> [b[:from_location], b[:to_location], b[:to]]
+      [a[:from][:location], a[:to][:card], a[:to][:location]] <=> [b[:from][:location], b[:to][:card], b[:to][:location]]
     end
 
     @valid_moves.clear
     moves.map.with_index do |move, index|
       @valid_moves[index] = move
-      "#{index}: #{move[:from_location]} #{move[:from]} to #{move[:to_location]} #{move[:to]}"
+      "#{index}: #{move[:from][:location]} #{move[:from][:card]} to #{move[:to][:location]} #{move[:to][:card]}"
     end
   end
 end

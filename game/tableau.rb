@@ -34,12 +34,18 @@ class Game
         foundation_cards.each_with_index do |foundation_card, foundation_index|
           if pile.can_receive?(foundation_card)
             moves << {
-              from: foundation_card.display,
-              from_index: foundation_index,
-              from_location: 'Foundation',
-              to: pile.empty? ? "Column #{pile_index + 1}" : pile.last.display,
-              to_index: pile_index,
-              to_location: 'Tableau'
+              from: {
+                card: foundation_card.display,
+                index: foundation_index,
+                pile_index: nil,
+                location: 'Foundation'
+              },
+              to: {
+                card: pile.empty? ? "Column #{pile_index + 1}" : pile.last.display,
+                index: pile_index,
+                pile_index: nil,
+                location: 'Tableau'
+              }
             }
           end
         end
@@ -50,12 +56,18 @@ class Game
           column.each do |column_card|
             if pile.can_receive?(column_card[:card])
               moves << {
-                from: column_card[:card].display,
-                from_index: column_index,
-                from_location: 'Tableau',
-                to: pile.empty? ? "Column #{pile_index + 1}" : pile.last.display,
-                to_index: pile_index,
-                to_location: 'Tableau'
+                from: {
+                  card: column_card[:card].display,
+                  index: column_index,
+                  pile_index: nil,
+                  location: 'Tableau',
+                },
+                to: {
+                  card: pile.empty? ? "Column #{pile_index + 1}" : pile.last.display,
+                  index: pile_index,
+                  pile_index: nil,
+                  location: 'Tableau'
+                }
               }
             end
           end
