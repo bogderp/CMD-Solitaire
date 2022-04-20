@@ -78,7 +78,7 @@ class Game
   def generate_valid_moves
     moves = [
       @foundation.moves(@stock.current_card, @tableau.top_cards),
-      @tableau.moves(@foundation.top_cards)
+      @tableau.moves(@stock.current_card, @foundation.top_cards)
     ].flatten
 
     moves.sort! do |a, b|

@@ -29,9 +29,26 @@ class Game
       @piles.map(&:last)
     end
 
-    def moves(foundation_cards)
+    def moves(talon_card, foundation_cards)
       @piles.each_with_object([]).with_index do |(pile, moves), pile_index|
         foundation_cards.each_with_index do |foundation_card, foundation_index|
+          if pile.can_receive?(talon_card) {
+            moves << {
+              from: {
+                card: talon_card.display,
+                index: nil,
+                pile_index: nil,
+                location: 'Stock',
+              },
+              to: {
+                card: pile.empty? ? "Pile #{index + 1}" : pile.last.display,
+                index: index,
+                pile_index: nil,
+                location: 'Foundation'
+              }
+            }
+          }
+
           if pile.can_receive?(foundation_card)
             moves << {
               from: {
@@ -59,7 +76,7 @@ class Game
                 from: {
                   card: column_card[:card].display,
                   index: column_index,
-                  pile_index: nil,
+                  pile_index: column_card[:index],
                   location: 'Tableau',
                 },
                 to: {

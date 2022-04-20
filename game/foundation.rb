@@ -19,7 +19,7 @@ class Game
               card: talon_card.display,
               index: nil,
               pile_index: nil,
-              location: 'Talon',
+              location: 'Stock',
             },
             to: {
               card: pile.empty? ? "Pile #{index + 1}" : pile.last.display,
